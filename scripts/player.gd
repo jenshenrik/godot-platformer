@@ -7,6 +7,7 @@ extends CharacterBody2D
 @export var coyote_frames = 5
 @export var speed = 130.0
 @export var jump_velocity = -300.0
+@export var max_fall_speed = 300
 
 var coyote = false
 var last_floor = false
@@ -27,6 +28,11 @@ func _ready():
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	velocity.y += gravity * delta
+	
+	# Clamp fall speed
+	if velocity.y > max_fall_speed:
+		velocity.y = max_fall_speed
+	
 
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and can_jump():	
