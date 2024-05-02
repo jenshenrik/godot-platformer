@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 @onready var coyoteTimer = $CoyoteTimer
+@onready var rollTimer = $RollTimer
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 @export var coyote_frames = 5
@@ -12,12 +13,16 @@ var last_floor = false
 var jumping = false
 
 var double_jump_available = true
+var is_rolling = false
+var roll_animation_frames = 5
+var roll_animation_fps = 15
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _ready():
 	coyoteTimer.wait_time = coyote_frames / 60 # 60 fps
+	rollTimer.wait_time = roll_animation_frames / roll_animation_fps / 60
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -29,7 +34,9 @@ func _physics_process(delta: float) -> void:
 		jumping = true
 		
 		if double_jump_available and !is_on_floor() and !coyote:
+			animated_sprite.play("roll")
 			double_jump_available = false
+			is_rolling = true
 			
 		if coyote:
 			coyote = false
@@ -49,7 +56,7 @@ func _physics_process(delta: float) -> void:
 			animated_sprite.play("idle")
 		else:
 			animated_sprite.play("run")
-	else:
+	elif !is_rolling:
 		animated_sprite.play("jump")
 
 	# Apply movement
@@ -75,3 +82,6 @@ func can_jump():
 	
 func _on_coyote_timer_timeout():
 	coyote = false
+
+func _on_roll_timer_timeout():
+	is_rolling = false
