@@ -184,3 +184,9 @@ autoplay = "idle"
 position = Vector2(0, -6)
 scale = Vector2(0.560002, 0.575425)
 shape = SubResource("CircleShape2D_lvnph")
+
+[node name="CoyoteTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="ready" from="CoyoteTimer" to="." method="_on_coyote_timer_ready"]
+[connection signal="timeout" from="CoyoteTimer" to="." method="_on_coyote_timer_timeout"]
