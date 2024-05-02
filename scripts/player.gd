@@ -33,7 +33,6 @@ func _physics_process(delta: float) -> void:
 	if velocity.y > max_fall_speed:
 		velocity.y = max_fall_speed
 	
-
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and can_jump():	
 		velocity.y = jump_velocity
@@ -43,10 +42,13 @@ func _physics_process(delta: float) -> void:
 			animated_sprite.play("roll")
 			double_jump_available = false
 			is_rolling = true
-			
+		
 		if coyote:
 			coyote = false
-			
+	
+	# Stop jump when button is released
+	if Input.is_action_just_released("jump") and velocity.y < 0:
+		velocity.y /= 5
 	# Get the input direction: -1, 0, 1
 	var direction := Input.get_axis("move_left", "move_right")
 	
