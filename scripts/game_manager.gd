@@ -1,8 +1,18 @@
 extends Node
 
 var score = 0
-@onready var score_label: Label = $"../Labels/ScoreLabel"
+@onready var hud = %HUD
 
 func add_point():
 	score += 1
-	score_label.text = "You have collected " + str(score) + " coins"
+	hud.update_score(score)
+
+func _on_hud_start_game():
+	new_game()
+
+func new_game():
+	hud.update_score(0)
+	hud.show_message("LET'S A-GO!")
+
+func game_over():
+	pass

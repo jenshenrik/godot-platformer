@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cbriby6vy2qi2"]
+[gd_scene load_steps=16 format=3 uid="uid://cbriby6vy2qi2"]
 
 [ext_resource type="PackedScene" uid="uid://bhd6cys4cwx5" path="res://scenes/player.tscn" id="1_arm17"]
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_bhmxb"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://ccxr6hoy15btv" path="res://scenes/platform.tscn" id="3_axts5"]
 [ext_resource type="PackedScene" uid="uid://c7h0jmnvvau1w" path="res://scenes/coin.tscn" id="4_lwcyy"]
 [ext_resource type="FontFile" uid="uid://cwmsvvsc3wshb" path="res://assets/fonts/PixelOperator8.ttf" id="8_pabc6"]
+[ext_resource type="PackedScene" uid="uid://duxj3vcf2laxm" path="res://scenes/hud.tscn" id="9_ex687"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_12acr"]
 texture = ExtResource("2_l0ll1")
@@ -529,14 +530,5 @@ theme_override_fonts/font = ExtResource("8_pabc6")
 theme_override_font_sizes/font_size = 8
 text = "Space to jump"
 
-[node name="ScoreLabel" type="Label" parent="Labels"]
-offset_left = 586.0
-offset_top = -131.0
-offset_right = 626.0
-offset_bottom = -79.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("8_pabc6")
-theme_override_font_sizes/font_size = 8
-text = "You have collected X coins"
-horizontal_alignment = 1
-autowrap_mode = 2
+[node name="HUD" parent="." instance=ExtResource("9_ex687")]
+unique_name_in_owner = true
