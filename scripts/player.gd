@@ -17,7 +17,7 @@ var double_jump_available = true
 var is_rolling = false
 var roll_animation_frames = 5
 var roll_animation_fps = 15
-
+ 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity")
 

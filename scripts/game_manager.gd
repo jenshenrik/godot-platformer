@@ -12,7 +12,6 @@ func _on_hud_start_game():
 
 func new_game():
 	hud.update_score(0)
-	hud.show_message("LET'S A-GO!")
-
+	
 func game_over():
 	pass
