@@ -4,10 +4,11 @@ extends Control
 
 func _ready():
 	play_button.grab_focus()
+	GameManager.hud.hide()
 
 func _on_play_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/game.tscn")
-
+	GameManager.start_game()
+	
 
 func _on_quit_button_pressed() -> void:
 	get_tree().quit()

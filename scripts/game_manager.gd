@@ -1,8 +1,14 @@
 extends Node
 
 var score = 0
-@onready var hud = %HUD
 
+@onready var hud: CanvasLayer = $HUD
+
+func start_game():
+	new_game()
+	hud.show()
+	get_tree().change_scene_to_file("res://scenes/game.tscn")
+	
 func add_point():
 	score += 1
 	hud.update_score(score)
@@ -14,4 +20,6 @@ func new_game():
 	hud.update_score(0)
 	
 func game_over():
-	pass
+	score = 0
+	hud.update_score(score)
+	get_tree().change_scene_to_file("res://scenes/menu.tscn")
